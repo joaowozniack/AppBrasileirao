@@ -1,1 +1,69 @@
-<p>Bem-vindo ao Brasileirão!</p>
+<div class="container mt-5">
+    <div>
+        <h1 class="text-center mb-4">Brasileirão Betano 2025</h1>
+    </div>
+  
+    <div class="row">
+        <div class="col-md-8">
+        <h2>Classificação Série A</h2>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th></th>
+                <th></th>
+                <th>P</th>
+                <th>J</th>
+                <th>V</th>
+                <th>E</th>
+                <th>D</th>
+                <th>GP</th>
+                <th>GC</th>
+                <th>SG</th>
+            </tr>
+            </thead>
+            <tbody>
+                @if(times.length > 0)
+                {
+                    @for (time of times; track $index){
+                        <tr>
+                            <td>{{ $index + 1 }}</td>
+                            <td (click)="listarTimePorId()">
+                                <img [src]="time.escudo" alt="{{ time.nome }}" class="mr-2" style="width: 30px; height: 30px; margin-right: 10px;">
+                                {{ time.nome }}
+                            </td>
+                            <td>{{ time.pontos }}</td>
+                            <td>{{ time.jogos }}</td>
+                            <td>{{ time.vitorias }}</td>
+                            <td>{{ time.empates }}</td>
+                            <td>{{ time.derrotas }}</td>
+                            <td>{{ time.golsPro }}</td>
+                            <td>{{ time.golsContra }}</td>
+                            <td>{{ time.golsPro - time.golsContra }}</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+        </div>
+        
+        <div class="col-md-4">
+        <h2>Jogos</h2>
+        <ul class="list-group">
+            <li class="list-group-item" *ngFor="let partida of partidas">
+            <!-- {{ partida.timeCasa }} vs {{ partida.timeVisitante }} - {{ partida.data | date:'short' }} -->
+            </li>
+        </ul>
+        
+        <h2 class="mt-4">Estatísticas</h2>
+        <ul class="list-group">
+            <li class="list-group-item">
+            <!-- Total de Gols: {{ estatisticas.totalGols }} -->
+            </li>
+            <li class="list-group-item">
+            <!-- Média de Gols por Jogo: {{ estatisticas.mediaGolsPorJogo }} -->
+            </li>
+            <!-- Adicione mais estatísticas conforme necessário -->
+        </ul>
+        </div>
+    </div>
+</div>
