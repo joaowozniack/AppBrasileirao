@@ -1,0 +1,52 @@
+<div class="container mt-5">
+    <button class="button-para-tela-inicial" (click)="irParaHome()">Tela Inicial</button>
+    <button class="button-para-proxima-tela" (click)="irParaAtualizarPlacar()">Atualizar Placar</button>
+    <h1 class="text-center mb-4">Partidas</h1>
+    <div class="acoes-rodada">
+        <button class="button-rodada" (click)="rodadaAnterior()"><i class="fa-solid fa-chevron-left"></i></button>
+        <h5 class="text-rodada">Rodada {{ rodadaAtual }}</h5>
+        <button class="button-rodada" (click)="proximaRodada()"><i class="fa-solid fa-chevron-right"></i></button>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Jogos</h2>
+            @if(partidas.length > 0 ? partidas : 'Nenhuma partida encontrada')
+            {
+                <div class="row">
+                    @for (partida of partidas; track $index){
+                        <div class="col-md-4">
+                            <div class="card mb-4" style="width: 100%;">
+                                <div class="card-body">
+                                    <p class="card-text" style="margin-bottom: 3px; display: flex; justify-content: center;">
+                                        <strong style="font-weight: normal;">{{ partida.data }} - Quarta-feira - 20:00</strong>
+                                    </p>
+                                    <p class="card-text" style="margin-bottom: 5px; display: flex; justify-content: center;">
+                                        <strong style="font-weight: normal;">{{ partida.status }}</strong>
+                                    </p>
+                                    <p class="partida-info" style="margin-bottom: 3px;">
+                                        <span class="time-info">
+                                            <strong style="color: white; margin-right: 10px;">{{ partida.timeCasa }}</strong>
+                                            <img [src]="partida.escudoTimeCasa" alt="{{ partida.timeCasa.nome }}" class="time-escudo">
+                                        </span>
+                                        <span class="placar">
+                                            <strong class="golsTimeCasa">{{ partida.golsTimeCasa }}</strong>
+                                            <span style="font-weight: lighter; color: white;">x</span>
+                                            <strong class="golsTimeVisitante">{{ partida.golsTimeVisitante }}</strong>
+                                        </span>
+                                        <span class="time-info">
+                                            <img [src]="partida.escudoTimeVisitante" alt="{{ partida.timeVisitante.nome }}" class="time-escudo">
+                                            <strong style="color: white; margin-left: 10px;">{{ partida.timeVisitante }}</strong>
+                                        </span>
+                                    </p>
+                                    <p class="card-text">
+                                        <strong style="margin-top: 10px; font-weight: normal; display: flex; justify-content: center;">{{ partida.estadio }}</strong>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+    </div>
+</div>

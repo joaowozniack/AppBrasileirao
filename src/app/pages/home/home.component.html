@@ -5,65 +5,102 @@
   
     <div class="row">
         <div class="col-md-8">
-        <h2>Classificação Série A</h2>
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th></th>
-                <th></th>
-                <th>P</th>
-                <th>J</th>
-                <th>V</th>
-                <th>E</th>
-                <th>D</th>
-                <th>GP</th>
-                <th>GC</th>
-                <th>SG</th>
-            </tr>
-            </thead>
-            <tbody>
-                @if(times.length > 0)
-                {
-                    @for (time of times; track $index){
-                        <tr>
-                            <td>{{ $index + 1 }}</td>
-                            <td (click)="listarTimePorId()">
-                                <img [src]="time.escudo" alt="{{ time.nome }}" class="mr-2" style="width: 30px; height: 30px; margin-right: 10px;">
-                                {{ time.nome }}
-                            </td>
-                            <td>{{ time.pontos }}</td>
-                            <td>{{ time.jogos }}</td>
-                            <td>{{ time.vitorias }}</td>
-                            <td>{{ time.empates }}</td>
-                            <td>{{ time.derrotas }}</td>
-                            <td>{{ time.golsPro }}</td>
-                            <td>{{ time.golsContra }}</td>
-                            <td>{{ time.golsPro - time.golsContra }}</td>
-                        </tr>
+            <h2>Classificação Série A</h2>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Pos.</th>
+                    <th>Clube</th>
+                    <th>P</th>
+                    <th>J</th>
+                    <th>V</th>
+                    <th>E</th>
+                    <th>D</th>
+                    <th>GP</th>
+                    <th>GC</th>
+                    <th>SG</th>
+                </tr>
+                </thead>
+                <tbody>
+                    @if(times.length > 0 ? times : 'Nenhum time encontrado')
+                    {
+                        @for (time of times; track $index){
+                            <tr>
+                                <td>{{ $index + 1 }}</td>
+                                <td (click)="listarTimePorId()">
+                                    <img [src]="time.escudo" alt="{{ time.nome }}" class="mr-2" style="width: 30px; height: 30px; margin-right: 10px;">
+                                    {{ time.nome }}
+                                </td>
+                                <td>{{ time.pontos }}</td>
+                                <td>{{ time.jogos }}</td>
+                                <td>{{ time.vitorias }}</td>
+                                <td>{{ time.empates }}</td>
+                                <td>{{ time.derrotas }}</td>
+                                <td>{{ time.golsPro }}</td>
+                                <td>{{ time.golsContra }}</td>
+                                <td>{{ time.golsPro - time.golsContra }}</td>
+                            </tr>
+                        }
                     }
-                }
-            </tbody>
-        </table>
+                </tbody>
+            </table>
         </div>
-        
         <div class="col-md-4">
-        <h2>Jogos</h2>
-        <ul class="list-group">
-            <li class="list-group-item" *ngFor="let partida of partidas">
-            <!-- {{ partida.timeCasa }} vs {{ partida.timeVisitante }} - {{ partida.data | date:'short' }} -->
-            </li>
-        </ul>
-        
-        <h2 class="mt-4">Estatísticas</h2>
-        <ul class="list-group">
-            <li class="list-group-item">
-            <!-- Total de Gols: {{ estatisticas.totalGols }} -->
-            </li>
-            <li class="list-group-item">
-            <!-- Média de Gols por Jogo: {{ estatisticas.mediaGolsPorJogo }} -->
-            </li>
-            <!-- Adicione mais estatísticas conforme necessário -->
-        </ul>
+            <div class="button-jogos">
+                <h2>Jogos</h2>
+                <button class="button-para-proxima-tela" (click)="irParaPartidas()">Mais Jogos</button>
+            </div>
+            <div class="acoes-rodada">
+                <button class="button-rodada" (click)="rodadaAnterior()"><i class="fa-solid fa-chevron-left"></i></button>
+                <h5 class="text-rodada">Rodada {{ rodadaAtual }}</h5>
+                <button class="button-rodada" (click)="proximaRodada()"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+            @if(partidas.length > 0 ? partidas : 'Nenhuma partida encontrada')
+            {
+                <div class="card mb-2">
+                    <div class="card-body">
+                        <p class="card-text" style="margin-bottom: 3px; display: flex; justify-content: center;">
+                            <strong style="font-weight: normal;">{{ partidas[0].data }} - Quarta-feira - 20:00</strong>
+                        </p>
+                        <p class="card-text" style="margin-bottom: 5px; display: flex; justify-content: center;">
+                            <strong style="font-weight: normal;">{{ partidas[0].status }}</strong>
+                        </p>
+                        <p class="partida-info" style="margin-bottom: 3px;">
+                            <span class="time-info">
+                                <strong style="color: white; margin-right: 10px;">{{ partidas[0].timeCasa}}</strong>
+                                <img [src]="partidas[0].escudoTimeCasa" alt="{{ partidas[0].timeCasa.nome }}" class="time-escudo">
+                            </span>
+                            <span class="placar">
+                                <strong class="golsTimeCasa">{{ partidas[0].golsTimeCasa }}</strong>
+                                <span style="font-weight: lighter; color: white;">x</span>
+                                <strong class="golsTimeVisitante">{{ partidas[0].golsTimeVisitante }}</strong>
+                            </span>
+                            <span class="time-info">
+                                <img [src]="partidas[0].escudoTimeVisitante" alt="{{ partidas[0].timeVisitante.nome }}" class="time-escudo">
+                                <strong style="color: white; margin-left: 10px;">{{ partidas[0].timeVisitante }}</strong>
+                            </span>
+                        </p>
+                        <p class="card-text">
+                            <strong style="margin-top: 10px; font-weight: normal; display: flex; justify-content: center;">{{ partidas[0].estadio }}</strong>
+                        </p>
+                    </div>
+                </div>
+            }
+            <div class="button-estatisticas">
+                <h2>Estatísticas</h2>
+                <button class="button-para-proxima-tela" (click)="irParaPartidas()">Mais Estatísticas</button>
+            </div>
+            <div class="estatisticas">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                    <!-- Total de Gols: {{ estatisticas.totalGols }} -->
+                    </li>
+                    <li class="list-group-item">
+                    <!-- Média de Gols por Jogo: {{ estatisticas.mediaGolsPorJogo }} -->
+                    </li>
+                    <!-- Adicione mais estatísticas conforme necessário -->
+                </ul>
+            <div>
         </div>
     </div>
 </div>

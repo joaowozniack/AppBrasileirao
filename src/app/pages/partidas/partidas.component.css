@@ -35,37 +35,6 @@
     color: white;
 }
 
-
-.button-jogos {
-    display: flex;
-    justify-content: space-between;
-}
-
-.button-estatisticas {
-    margin-top: 3em;
-    display: flex;
-    justify-content: space-between;
-}
-
-.estatisticas {
-    margin-top: 20px;
-}
-
-.button-para-proxima-tela {
-    border: none;
-    border-radius: 5px;
-    background: #4e5d6c;
-    font-size: 1.2em;
-    cursor: pointer;
-    color: #fff;
-    padding: 5px 10px;
-    transition: 0.3s;
-}
-
-.button-para-proxima-tela:hover {
-    background: #3b4a59;
-}
-
 .acoes-rodada {
     display: flex;
     justify-content: center;
@@ -76,13 +45,41 @@
 .button-rodada {
     border: none;
     background: none;
-    font-size: 1.2em;
+    font-size: 1.5em;
     cursor: pointer;
     color: #fff;
 }
 
 .text-rodada {
     color: #fff;
+    font-size: 1.3em;
+    margin: 0 50px;
+}
+
+.button-para-tela-inicial {
+    border: none;
+    border-radius: 5px;
+    background: #4e5d6c;
     font-size: 1.2em;
-    margin: 10px 30px;
+    cursor: pointer;
+    color: #fff;
+    padding: 5px 10px;
+    transition: 0.3s;
+}
+
+.button-para-proxima-tela {
+    margin-left: 10px;
+    border: none;
+    border-radius: 5px;
+    background: #4e5d6c;
+    font-size: 1.2em;
+    cursor: pointer;
+    color: #fff;
+    padding: 5px 10px;
+    transition: 0.3s;
+}
+
+
+.button-para-tela-inicial:hover {
+    background: #3b4a59;
 }

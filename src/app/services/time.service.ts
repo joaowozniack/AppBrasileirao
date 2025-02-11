@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
     providedIn: 'root'
 })
 export class TimeService {
-    ApiUrl = environment.UrlApi;
+    ApiUrl = environment.UrlApi + "Time";
 
     constructor(private http : HttpClient) { }
 
