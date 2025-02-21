@@ -98,4 +98,18 @@ export class PartidasComponent implements OnInit {
             partida.golsTimeVisitante--;
         }
     }
+
+    formatarData(data: Date): string {
+        const diasDaSemana = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'];
+        const diaDaSemana = diasDaSemana[new Date(data).getDay()];
+        const dataFormatada = new Date(data).toLocaleDateString('pt-BR', {
+            day: '2-digit',
+            month: '2-digit',
+        });
+        const horarioFormatado = new Date(data).toLocaleTimeString('pt-BR', {
+            hour: '2-digit',
+            minute: '2-digit'
+        });
+        return `${dataFormatada} - ${diaDaSemana} - ${horarioFormatado}`;
+    }
 }

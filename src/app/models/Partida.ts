@@ -11,6 +11,6 @@ export interface PartidaListar{
     golsTimeCasa: number;
     golsTimeVisitante: number;
     palcar: string;
-    data: string;
+    data: Date;
     estadio: string;
 }
