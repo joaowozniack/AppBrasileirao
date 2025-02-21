@@ -25,7 +25,12 @@
                     @if(times.length > 0 ? times : 'Nenhum time encontrado')
                     {
                         @for (time of times; track $index){
-                            <tr>
+                            <tr [ngClass]="{
+                                'posicao-libertadores': $index < 4,
+                                'posicao-pre-libertadores': $index >= 4 && $index < 6,
+                                'posicao-sul-america': $index >= 6 && $index < 12,
+                                'posicao-serie-b': $index >= times.length - 4
+                            }">
                                 <td>{{ $index + 1 }}</td>
                                 <td (click)="listarTimePorId()">
                                     <img [src]="time.escudo" alt="{{ time.nome }}" class="mr-2" style="width: 30px; height: 30px; margin-right: 10px;">
@@ -44,6 +49,28 @@
                     }
                 </tbody>
             </table>
+            <div class="legenda">
+                <div class="posicao-libertadores">
+                    <p class="posicao-texto">
+                        Libertadores
+                    </p>
+                </div>
+                <div class="posicao-pre-libertadores">
+                    <p class="posicao-texto">
+                        Pré-Libertadores
+                    </p>
+                </div>
+                <div class="posicao-sul-america">
+                    <p class="posicao-texto">
+                        Sul-Americana
+                    </p>
+                </div>
+                <div class="posicao-serie-b">
+                    <p class="posicao-texto">
+                        Rebaixados
+                    </p>
+                </div>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="button-jogos">

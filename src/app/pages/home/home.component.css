@@ -86,3 +86,36 @@
     font-size: 1.2em;
     margin: 10px 30px;
 }
+
+.legenda {
+    display: flex;
+    margin-top: 20px;
+    gap : 20px;
+}
+
+.legenda div {
+    margin: 0 10px 20px 10px;
+    padding-left: 15px; /* Adiciona espaço entre o risco colorido e a palavra */
+}
+
+.posicao-libertadores {
+    border-left: 5px solid green;
+}
+
+.posicao-pre-libertadores {
+    border-left: 5px solid rgb(130, 255, 47);
+}
+
+.posicao-sul-america {
+    border-left: 5px solid blue;
+}
+
+.posicao-serie-b {
+    border-left: 5px solid red;
+}
+
+.posicao-texto {
+    color: #fff;
+    font-size: 0.9em;
+    margin: 1px;
+}

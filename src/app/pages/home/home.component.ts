@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 import { TimeService } from '../../services/time.service';
 import { TimeListar } from '../../models/Time';
 import { PartidaListar } from '../../models/Partida';
@@ -8,7 +9,7 @@ import { PartidaService } from '../../services/partida.service';
 @Component({
     selector: 'app-home',
     standalone: true,
-    imports: [],
+    imports: [CommonModule],
     templateUrl: './home.component.html',
     styleUrl: './home.component.css'
 })
