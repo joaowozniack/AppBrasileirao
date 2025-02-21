@@ -10,21 +10,26 @@ import { PartidaListar } from '../models/Partida';
 })
 export class PartidaService {
 	rodada = 1;
-	ApiUrl = environment.UrlApi + "Partida/" + this.rodada;
+	private baseUrl = environment.UrlApi + "Partida/";
 
 	constructor(private http : HttpClient) { }
 
 	GetPartidas(): Observable<Response<PartidaListar[]>> {
-		return this.http.get<Response<PartidaListar[]>>(this.ApiUrl);
+		return this.http.get<Response<PartidaListar[]>>(this.baseUrl + this.rodada);
 	}
 
 	GetPartidasPorRodada(rodada: number): Observable<Response<PartidaListar[]>> {
-		this.ApiUrl = environment.UrlApi + "Partida/" + rodada;
-		return this.http.get<Response<PartidaListar[]>>(this.ApiUrl);
+		const url = `${this.baseUrl}${rodada}`;
+		return this.http.get<Response<PartidaListar[]>>(url);
 	}
 
-	AtualizarPartidaComPlacar(idPartida: number, golsTimeCasa: number, golsTimeVisitante: number): Observable<Response<any>> {
-        const url = environment.UrlApi + "Partida/" + idPartida;
-        return this.http.put<Response<any>>(url, { golsTimeCasa, golsTimeVisitante });
+	AtualizarPartidaComPlacar(partida: PartidaListar): Observable<any> {
+        const url = `${this.baseUrl}atualizarPartida`;
+        return this.http.put<any>(url, partida);
     }
+
+	FinalizarPartida(partida: PartidaListar): Observable<any> {
+		const url = `${this.baseUrl}finalizarPartida`;
+		return this.http.put<any>(url, partida);
+	}
 }

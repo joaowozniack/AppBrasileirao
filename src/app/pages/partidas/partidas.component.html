@@ -1,6 +1,5 @@
 <div class="container mt-5">
     <button class="button-para-tela-inicial" (click)="irParaHome()">Tela Inicial</button>
-    <button class="button-para-proxima-tela" (click)="irParaAtualizarPlacar()">Atualizar Placar</button>
     <h1 class="text-center mb-4">Partidas</h1>
     <div class="acoes-rodada">
         <button class="button-rodada" (click)="rodadaAnterior()"><i class="fa-solid fa-chevron-left"></i></button>
@@ -28,10 +27,16 @@
                                             <strong style="color: white; margin-right: 10px;">{{ partida.timeCasa }}</strong>
                                             <img [src]="partida.escudoTimeCasa" alt="{{ partida.timeCasa.nome }}" class="time-escudo">
                                         </span>
-                                        <span class="placar">
+                                        <span class="placar" style="display: flex; flex-direction: column; align-items: center;">
+                                            <button class="button-editar-gols" (click)="aumentarGols(partida, 'casa')"><i class="fa-solid fa-plus"></i></button>
                                             <strong class="golsTimeCasa">{{ partida.golsTimeCasa }}</strong>
-                                            <span style="font-weight: lighter; color: white;">x</span>
+                                            <button class="button-editar-gols" (click)="diminuirGols(partida, 'casa')"><i class="fa-solid fa-minus"></i></button>
+                                        </span>
+                                        <span style="font-weight: lighter; color: white;">x</span>
+                                        <span class="placar" style="display: flex; flex-direction: column; align-items: center;">
+                                            <button class="button-editar-gols" (click)="aumentarGols(partida, 'visitante')"><i class="fa-solid fa-plus"></i></button>
                                             <strong class="golsTimeVisitante">{{ partida.golsTimeVisitante }}</strong>
+                                            <button class="button-editar-gols" (click)="diminuirGols(partida, 'visitante')"><i class="fa-solid fa-minus"></i></button>
                                         </span>
                                         <span class="time-info">
                                             <img [src]="partida.escudoTimeVisitante" alt="{{ partida.timeVisitante.nome }}" class="time-escudo">
@@ -40,6 +45,10 @@
                                     </p>
                                     <p class="card-text">
                                         <strong style="margin-top: 10px; font-weight: normal; display: flex; justify-content: center;">{{ partida.estadio }}</strong>
+                                        <strong class="acoes-partida">
+                                            <button class="button-acao-atualizar" (click)="atualizarPlacar(partida)">Atualizar Placar</button>
+                                            <button class="button-acao-finalizar" (click)="finalizarPartida(partida)">Finalizar Partida</button>
+                                        </strong>
                                     </p>
                                 </div>
                             </div>

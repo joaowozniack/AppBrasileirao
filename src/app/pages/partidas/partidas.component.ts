@@ -57,14 +57,45 @@ export class PartidasComponent implements OnInit {
         });
     }
 
-    atualizarPlacar(idPartida: number, golsTimeCasa: number, golsTimeVisitante: number) {
-        this.servicePartida.AtualizarPartidaComPlacar(idPartida, golsTimeCasa, golsTimeVisitante).subscribe(response => {
+    atualizarPlacar(partida: any) {
+        this.servicePartida.AtualizarPartidaComPlacar(partida).subscribe(response => {
             if (response.status) {
                 alert('Placar atualizado com sucesso!');
-                this.carregarPartidas(this.rodadaAtual);
             } else {
-                alert('Erro ao atualizar o placar.');
+                alert('Erro ao atualizar placar!');
             }
+        }, error => {
+            console.error('Erro ao atualizar placar:', error);
+            alert('Erro ao atualizar placar!');
         });
+    }
+
+    finalizarPartida(partida: any) {
+        this.servicePartida.FinalizarPartida(partida).subscribe(response => {
+            if (response.status) {
+                alert('Partida finalizada com sucesso!');
+            } else {
+                alert('Erro ao finalizar partida!');
+            }
+        }, error => {
+            console.error('Erro ao finalizar partida:', error);
+            alert('Erro ao finalizar partida!');
+        });
+    }
+
+    aumentarGols(partida: any, time: string) {
+        if (time === 'casa') {
+            partida.golsTimeCasa++;
+        } else if (time === 'visitante') {
+            partida.golsTimeVisitante++;
+        }
+    }
+
+    diminuirGols(partida: any, time: string) {
+        if (time === 'casa' && partida.golsTimeCasa > 0) {
+            partida.golsTimeCasa--;
+        } else if (time === 'visitante' && partida.golsTimeVisitante > 0) {
+            partida.golsTimeVisitante--;
+        }
     }
 }
